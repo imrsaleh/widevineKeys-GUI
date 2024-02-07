@@ -1,0 +1,10 @@
+beaupy
+beautifulsoup4
+httpx
+jmespath
+pycryptodome
+pywidevine
+Requests
+rich
+Scrapy
+termcolor
