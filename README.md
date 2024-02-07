@@ -16,5 +16,5 @@ pip install -r requirements.txt
 execute widevineKeys-GUI.py
 
 all keys will be saved in KeysDB.txt
-
+It works with many websites, but not all
 enjoy...
