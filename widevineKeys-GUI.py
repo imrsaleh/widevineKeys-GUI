@@ -41,6 +41,9 @@ def execute_script1():
         pssh = PSSH(pssh_input)
 
         files = glob.glob('Device/*.wvd')
+        if not files:
+            result_box.insert(tk.END, "Device not found\n")
+
 
         device = Device.load(files[0])
         cdm = Cdm.from_device(device)
@@ -112,6 +115,9 @@ def execute_script2():
         pssh = PSSH(pssh_input)
 
         files = glob.glob('Device/*.wvd')
+        if not files:
+            result_box.insert(tk.END, "Device not found\n")
+
 
         device = Device.load(files[0])
         cdm = Cdm.from_device(device)
@@ -193,6 +199,8 @@ def execute_script3():
         pssh = PSSH(pssh_input)
 
         files = glob.glob('Device/*.wvd')
+        if not files:
+            result_box.insert(tk.END, "Device not found\n")
 
         device = Device.load(files[0])
         cdm = Cdm.from_device(device)
@@ -288,6 +296,8 @@ def execute_script4():
         pssh = PSSH(pssh_input)
 
         files = glob.glob('Device/*.wvd')
+        if not files:
+            result_box.insert(tk.END, "Device not found\n")
 
         device = Device.load(files[0])
         cdm = Cdm.from_device(device)
@@ -619,6 +629,8 @@ def execute_script5():
             decrypted_vod_stream.uri, config.drm_today).license_response
         # Load the WVD and generate a session ID
         files = glob.glob('Device/*.wvd')
+        if not files:
+            result_box.insert(tk.END, "Device not found\n")
 
         device = Device.load(files[0])
         cdm = Cdm.from_device(device)
