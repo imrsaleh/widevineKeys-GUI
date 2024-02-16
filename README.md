@@ -6,7 +6,7 @@
 
 1- python 3 
 
-2- WVD file in Device folder ( not included and don't ask me where to find it )
+2- CDM in WVD format in Device folder ( not included and don't ask me where to find it )
 
 install requirements
 ```
