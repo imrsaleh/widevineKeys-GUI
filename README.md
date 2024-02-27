@@ -8,7 +8,7 @@
 
 2- CDM in WVD format in Device folder ( not included and don't ask me where to find it )
 
-install requirements
+3- install requirements
 ```
 pip install -r requirements.txt
 ```
