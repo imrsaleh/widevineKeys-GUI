@@ -21,7 +21,6 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 from httpx import Client
 
-##################Generic Widevine####################################
 def execute_script1():
     cdm = None
     try:
@@ -99,7 +98,6 @@ def execute_download1():
     subprocess.Popen(command, shell=True)
 
         
-     ######### DRMToday #########
 def execute_script2():
     cdm = None
     try:
@@ -169,7 +167,6 @@ def execute_download2():
     command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv:muxer=mkvmerge --no-log'
     subprocess.Popen(command, shell=True)
 
-      ########### Widevine b64encode challenge ###########
 def execute_script3():
     cdm = None
     try:
@@ -258,16 +255,15 @@ def execute_download3():
     command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv:muxer=mkvmerge --no-log'
     subprocess.Popen(command, shell=True)
 
-         ############ list(challenge) Payload data ###########
 def update_data_name():
     data = payload_entry4.get("1.0", tk.END)
     match = re.search(r'(\w+)"\s*:\s*\[\s*(\d+,\s*)*\d+\s*\]', data, re.DOTALL)
     data_info_entry4.delete(0, tk.END)
-    if data.strip():  # check if the field is not empty
+    if data.strip():  
         if match:
             value_before_numbers = match.group(1)
             data_info_entry4.insert(0, value_before_numbers)
-    window.after(2000, update_data_name)  # re-run the function after 2000 milliseconds
+    window.after(2000, update_data_name)  
 
 def execute_script4():
     cdm = None
@@ -322,7 +318,6 @@ def execute_script4():
 
         cdm.parse_license(session_id, license.content)
 
-        # print keys
         with open('KeysDB.txt', 'a') as file:
             file.write('\n')
             for key in cdm.get_keys(session_id):
@@ -355,7 +350,6 @@ def execute_download4():
     command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv:muxer=mkvmerge --no-log'
     subprocess.Popen(command, shell=True)
 
-################################# channel 4 #################################################
 def execute_script5():
     DEFAULT_HEADERS = {
     'Content-type': 'application/json',
@@ -637,18 +631,14 @@ def execute_script5():
         session_id = cdm.open()
         cdm.set_service_certificate(session_id, service_cert)
         kid = get_kid(config.drm_today.video.url)
-        # Generate the PSSH
         pssh = generate_pssh(kid)
         challenge = cdm.get_license_challenge(
             session_id, PSSH(pssh), privacy_mode=True)
         config.drm_today.message = base64.b64encode(challenge).decode('UTF-8')
-        # Get license response
         license_response = get_license_response(
             decrypted_vod_stream.uri, config.drm_today)
-        # Parse license challenge
         cdm.parse_license(session_id, license_response.license_response)
         decryption_key = ''
-        # Return keys
         with open('KeysDB.txt', 'a') as file:
             file.write('\n')
             for key in cdm.get_keys(session_id):
@@ -659,7 +649,6 @@ def execute_script5():
             mpd_link = f"[MPD] {config.drm_today.video.url}\n"
             result_box.insert(tk.END, mpd_link)
             result_box.insert(tk.END, "keys saved in KeysDB.txt\n")
-        # Close session, disposes of session data
         cdm.close(session_id)
 
     if __name__ == "__main__":
@@ -681,16 +670,13 @@ def execute_download5():
     command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv:muxer=mkvmerge --no-log'
     subprocess.Popen(command, shell=True)
 
-#############################################################################################
 
-##########right click menu###########
 def right_click_popup(event):
     try:
         right_click_menu.tk_popup(event.x_root, event.y_root)
     finally:
         right_click_menu.grab_release()
 
-#############window################
 window = tk.Tk()
 window.title("Widevine Keys By BigWolf")
 window.iconbitmap('logo.ico')
@@ -717,7 +703,6 @@ notebook.add(tab3, text='   B64encode Challenge ')
 notebook.add(tab4, text='    List Challenge     ')
 notebook.add(tab5, text='    Channel 4          ')
 
-# TAB 1
 ttk.Label(tab1, text="PSSH* :").grid(column=0, row=0, sticky='w', padx=10, pady=5)
 pssh_entry1 = ttk.Entry(tab1, font=('Arial', 8), width=130)
 pssh_entry1.grid(column=1, row=0, sticky='w', padx=10, pady=5)
@@ -756,7 +741,6 @@ save_direcion_entry1.grid(column=1, row=8, sticky='w', padx=10, pady=5)
 download_button1 = ttk.Button(tab1, text="   Download   ", command=execute_download1)
 download_button1.grid(column=1, row=9, pady=10)
 
-# TAB 2
 ttk.Label(tab2, text="PSSH* :").grid(column=0, row=0, sticky='w', padx=10, pady=5)
 pssh_entry2 = ttk.Entry(tab2, font=('Arial', 8), width=130)
 pssh_entry2.grid(column=1, row=0, sticky='w', padx=10, pady=5)
@@ -787,7 +771,6 @@ save_direcion_entry2.grid(column=1, row=6, sticky='w', padx=10, pady=5)
 download_button2 = ttk.Button(tab2, text="   Download   ", command=execute_download2)
 download_button2.grid(column=1, row=7, pady=10)
 
-# TAB 3
 ttk.Label(tab3, text="PSSH* :").grid(column=0, row=0, sticky='w', padx=10, pady=5)
 pssh_entry3 = ttk.Entry(tab3, font=('Arial', 8), width=130)
 pssh_entry3.grid(column=1, row=0, sticky='w', padx=10, pady=5)
@@ -863,7 +846,6 @@ save_direcion_entry3.grid(column=1, row=14, sticky='w', padx=10, pady=5)
 download_button3 = ttk.Button(tab3, text="   Download   ", command=execute_download3)
 download_button3.grid(column=1, row=15, pady=10)
 
-# TAB 4
 ttk.Label(tab4, text="PSSH* :").grid(column=0, row=0, sticky='w', padx=10, pady=5)
 pssh_entry4 = ttk.Entry(tab4, font=('Arial', 8), width=130)
 pssh_entry4.grid(column=1, row=0, sticky='w', padx=10, pady=5)
@@ -910,7 +892,6 @@ save_direcion_entry4.grid(column=1, row=10, sticky='w', padx=10, pady=5)
 download_button4 = ttk.Button(tab4, text="   Download   ", command=execute_download4)
 download_button4.grid(column=1, row=11, pady=10)
 
-#TAB 5
 ttk.Label(tab5, text="Episode URL* :").grid(column=0, row=0, sticky='w', padx=10, pady=5)
 url_entry5 = ttk.Entry(tab5, font=('Arial', 8), width=130)
 url_entry5.grid(column=1, row=0, sticky='w', padx=10, pady=5)
@@ -933,8 +914,6 @@ save_direcion_entry5.grid(column=1, row=5, sticky='w', padx=10, pady=5)
 download_button5 = ttk.Button(tab5, text="   Download   ", command=execute_download5)
 download_button5.grid(column=1, row=6, pady=10)
 
-
-# Result box
 result_box = scrolledtext.ScrolledText(window)
 result_box.pack(pady=10, expand=True, fill='both')
 
