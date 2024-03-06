@@ -94,7 +94,7 @@ def execute_download1():
     if not download_url or not video_name or not save_direcion:
         result_box.insert(tk.END, "Download URL, video name, save location must not be empty!\n")
         return
-    command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv:muxer=mkvmerge --no-log'
+    command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv --no-log'
     subprocess.Popen(command, shell=True)
 
         
@@ -164,7 +164,7 @@ def execute_download2():
     if not download_url or not video_name or not save_direcion:
         result_box.insert(tk.END, "Download URL, video name, save location must not be empty!\n")
         return
-    command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv:muxer=mkvmerge --no-log'
+    command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv --no-log'
     subprocess.Popen(command, shell=True)
 
 def execute_script3():
@@ -252,7 +252,7 @@ def execute_download3():
     if not download_url or not video_name or not save_direcion:
         result_box.insert(tk.END, "Download URL, video name, save location must not be empty!\n")
         return
-    command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv:muxer=mkvmerge --no-log'
+    command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv --no-log'
     subprocess.Popen(command, shell=True)
 
 def update_data_name():
@@ -347,7 +347,7 @@ def execute_download4():
     if not download_url or not video_name or not save_direcion:
         result_box.insert(tk.END, "Download URL, video name, save location must not be empty!\n")
         return
-    command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv:muxer=mkvmerge --no-log'
+    command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv --no-log'
     subprocess.Popen(command, shell=True)
 
 def execute_script5():
@@ -667,7 +667,7 @@ def execute_download5():
     if not download_url or not video_name or not save_direcion:
         result_box.insert(tk.END, "Download URL, video name, save location must not be empty!\n")
         return
-    command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv:muxer=mkvmerge --no-log'
+    command = f'start cmd /k N_m3u8DL-RE.exe "{download_url}" --key-text-file KeysDB.txt --use-shaka-packager --binary-merge --save-dir {save_direcion} --save-name "{video_name}" -mt -M format=mkv --no-log'
     subprocess.Popen(command, shell=True)
 
 
