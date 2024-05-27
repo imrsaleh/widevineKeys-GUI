@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shaka Player Example</title>
+    <!-- تضمين ملفات CSS لـ Shaka Player -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.7/controls.min.css">
+</head>
+<body>
+
+<!-- مكان الفيديو في الصفحة -->
+<video id="video" width="640" controls></video>
+
+<!-- تضمين مكتبة Shaka Player -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.7/shaka-player.ui.min.js"></script>
+
+<script>
+// الكود الخاص بـ Shaka Player
+document.addEventListener('shaka-ui-loaded', function() {
+  // تأكد من تحميل Shaka Player بنجاح
+  if (shaka.Player.isBrowserSupported()) {
+    // إنشاء مثيل لمشغل Shaka
+    const video = document.getElementById('video');
+    const player = new shaka.Player(video);
+
+    // إعدادات DRM باستخدام ClearKey
+    player.configure({
+      drm: {
+        clearKeys: {
+          'd84c325f36814f39bbe59080272b10c3': '550727de4c96ef1ecff874905493580f'
+        }
+      }
+    });
+
+    // الآن يمكنك تحميل المصدر وتشغيل الفيديو
+    player.load('https://ssc1-ak.akamaized.net/out/v1/c696e4819b55414388a1a487e8a45ca1/index.mpd').then(() => {
+      console.log('الفيديو جاهز للتشغيل!');
+    }).catch(error => {
+      console.error('حدث خطأ أثناء تحميل الفيديو', error);
+    });
+  } else {
+    console.error('المتصفح لا يدعم Shaka Player');
+  }
+});
+</script>
+
+</body>
+</html>
