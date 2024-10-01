@@ -6,7 +6,7 @@
 
 1- python 3 
 
-2- CDM in WVD format in the same folder ( not included and don't ask me where to find it )
+2- CDM Device.wvd in the same folder ( included )
 
 3- install requirements
 ```
