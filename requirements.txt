@@ -1,10 +1,2 @@
-beaupy
-beautifulsoup4
-httpx
-jmespath
-pycryptodome
-pywidevine
-Requests
-rich
-Scrapy
-termcolor
+pywidevine==1.8.0
+Requests==2.32.3
